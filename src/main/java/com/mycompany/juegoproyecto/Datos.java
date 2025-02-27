@@ -12,9 +12,8 @@ public class Datos {
 
     private int numero;
     private char operacion;
-    private char descripcion;
 
-    
+
     
     public int getNumero() {
         return numero;
@@ -24,9 +23,7 @@ public class Datos {
         return operacion;
     }
 
-    public char getDescripcion() {
-        return descripcion;
-    }
+
 
     public void setNumero(int numero) {
         this.numero = numero;
@@ -35,9 +32,5 @@ public class Datos {
     public void setOperacion(char operacion) {
         this.operacion = operacion;
     }
-
-    public void setDescripcion(char descripcion) {
-        this.descripcion = descripcion;
-    }
-
+    
 }

@@ -6,8 +6,28 @@ package com.mycompany.juegoproyecto;
 
 /**
  *
- * @author Esteban
+ * @author Grupo#7
  */
 public class PilaJuego {
-    
+     private Nodo top;
+
+    public Nodo getTop() {
+        return top;
+    }
+
+    public void setTop(Nodo top) {
+        this.top = top;
+    }
+
+    public PilaJuego() {
+        top = null; // Pila vacia
+    }
+     
+     
+     
+     
+     
+     
+     
+     
 }

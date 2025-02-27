@@ -9,25 +9,29 @@ package com.mycompany.juegoproyecto;
  * @author Grupo#7
  */
 public class PilaJuego {
+     
      private Nodo top;
 
     public Nodo getTop() {
         return top;
     }
 
-    public void setTop(Nodo top) {
-        this.top = top;
+     public void push(Datos datos) {
+        Nodo nuevo = new Nodo(datos);
+        nuevo.setAbajo(top);
+        top = nuevo;
+    }
+
+     public Datos pop() {
+        if (top == null) {
+            return null;
+        }
+        Datos datos = top.getPiDatos();
+        top = top.getAbajo();
+        return datos;
     }
 
     public PilaJuego() {
         top = null; // Pila vacia
-    }
-     
-     
-     
-     
-     
-     
-     
-     
+    }       
 }

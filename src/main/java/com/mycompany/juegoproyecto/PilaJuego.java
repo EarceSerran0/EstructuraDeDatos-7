@@ -8,6 +8,11 @@ package com.mycompany.juegoproyecto;
  *
  * @author Grupo#7
  */
+
+
+
+// Esta  pila la tendremos como una referencia sin embargo es posible que no sea utilizada, por ahora centremonos en hacer las estructuras de premios y castigos.
+/*
 public class PilaJuego {
      
      private Nodo top;
@@ -35,3 +40,4 @@ public class PilaJuego {
         top = null; // Pila vacia
     }       
 }
+*/

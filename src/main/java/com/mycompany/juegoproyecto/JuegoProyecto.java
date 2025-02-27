@@ -4,6 +4,7 @@
 
 package com.mycompany.juegoproyecto;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author Grupo#7
@@ -11,6 +12,7 @@ package com.mycompany.juegoproyecto;
 public class JuegoProyecto {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+      JOptionPane.showMessageDialog(null, "Bienvenido al juego de carreras!"); // Aquí se implementará el menú y la lógica del juego  
     }
 }

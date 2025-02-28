@@ -29,9 +29,4 @@ public class Nodo {
         this.abajo = abajo;
     }
 
-    public Nodo(Datos piDatos) {
-        this.piDatos = piDatos;
-
-    }
-
 }

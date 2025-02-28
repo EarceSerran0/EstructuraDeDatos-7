@@ -10,11 +10,7 @@ package com.mycompany.juegoproyecto;
  */
 import javax.swing.JOptionPane;
 
-public class Cola {
-    private NodoJugador frente;
-    private NodoJugador fin;
-
-    public ColaJugadores() {
+public ColaJugadores() {
         frente = null;
         fin = null;
     }
@@ -40,3 +36,6 @@ public class Cola {
         JOptionPane.showMessageDialog(null, sb.toString());
     }
 }
+
+   
+    

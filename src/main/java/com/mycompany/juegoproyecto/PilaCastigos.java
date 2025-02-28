@@ -8,6 +8,6 @@ package com.mycompany.juegoproyecto;
  *
  * @author Esteban
  */
-public class PilaCastigos extends PilaJuego {
+public class PilaCastigos   {
     
 }

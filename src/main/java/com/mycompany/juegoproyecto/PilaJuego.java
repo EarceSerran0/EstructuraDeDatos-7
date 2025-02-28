@@ -4,45 +4,68 @@
  */
 package com.mycompany.juegoproyecto;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author Grupo#7
  */
-
-
-
-// Esta  pila la tendremos como una referencia sin embargo es posible que no sea utilizada, por ahora centremonos en hacer las estructuras de premios y castigos.
 /*
 public class PilaJuego {
      
-     private Nodo top;
-
-    public Nodo getTop() {
-        return top;
-    }
-
-     public void push(Datos datos) {
-        Nodo nuevo = new Nodo(datos);
+    private Nodo top;
+    
+    public void push(char operacion, int numero) {
+        Nodo nuevo = new Nodo(new Datos(numero, operacion));
         nuevo.setAbajo(top);
         top = nuevo;
     }
-
-     public Datos pop() {
-        if (top == null) {
-            return null;
-        }
+    
+    public Datos pop() {
+        if (top == null) return null;
         Datos datos = top.getPiDatos();
         top = top.getAbajo();
         return datos;
     }
+    
+    public Datos verTop() {
+        return (top != null) ? top.getPiDatos() : null;
+    }
+    
+    public boolean estaVacia() {
+        return top == null;
+    }
+    
+    public void inicializarPila(String tipo) {
+        if (tipo.equals("Premios")) {
+            push('+', 2);
+            push('+', 8);
+            push('+', 0);
+        } else if (tipo.equals("Castigos")) {
+            push('-', 3);
+            push('=', 1);
+            push('-', 5);
+         }
+    }
+    
+    public Nodo obtenerTopNodo() {
+        return top;
+    }
+     
+    public void listarPila() {
+    if (top == null) {
+        JOptionPane.showMessageDialog(null, "No hay elementos en la pila.");
+        return;
+    }
 
-    public PilaJuego() {
-        top = null; // Pila vacia
-    }    
-     public Datos verTop() {
-        if (top != null) {
-            return top.getPiDatos(); // Retorna el objeto de datos del nodo superior.
-        }
-        return null; // Si la pila está vacía, retornamos null.
+    Nodo actual = top;
+    StringBuilder lista = new StringBuilder("Elementos en la pila:\n");
+    
+    while (actual != null) {
+        Datos datos = actual.getPiDatos();
+        lista.append(datos.getOperacion()).append(datos.getNumero()).append("\n");
+        actual = actual.getAbajo();
+    }
+
+    JOptionPane.showMessageDialog(null, lista.toString());
     }
 }

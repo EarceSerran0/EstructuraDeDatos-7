@@ -13,7 +13,10 @@ public class Datos {
     private int numero;
     private char operacion;
 
-
+    public Datos(int numero, char operacion) {
+        this.numero = numero;
+        this.operacion = operacion;
+    }
     
     public int getNumero() {
         return numero;
@@ -23,14 +26,9 @@ public class Datos {
         return operacion;
     }
 
-
-
-    public void setNumero(int numero) {
-        this.numero = numero;
+     @Override
+    public String toString() {
+        return operacion + " " + numero;
     }
 
-    public void setOperacion(char operacion) {
-        this.operacion = operacion;
-    }
-    
 }

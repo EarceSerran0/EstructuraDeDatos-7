@@ -38,6 +38,11 @@ public class PilaJuego {
 
     public PilaJuego() {
         top = null; // Pila vacia
-    }       
+    }    
+     public Datos verTop() {
+        if (top != null) {
+            return top.getPiDatos(); // Retorna el objeto de datos del nodo superior.
+        }
+        return null; // Si la pila está vacía, retornamos null.
+    }
 }
-*/

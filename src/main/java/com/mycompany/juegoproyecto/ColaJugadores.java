@@ -3,14 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.juegoproyecto;
+ import javax.swing.JOptionPane;
 
 /**
  *
  * @author Grupo#7
- */
-import javax.swing.JOptionPane;
 
-public ColaJugadores() {
+ */
+
+public class ColaJugadores {
+
         frente = null;
         fin = null;
     }
@@ -34,8 +36,16 @@ public ColaJugadores() {
             actual = actual.getSiguiente();
         }
         JOptionPane.showMessageDialog(null, sb.toString());
-    }
+    }  
 }
+
+
+
+
+
+
+
+
 
    
     

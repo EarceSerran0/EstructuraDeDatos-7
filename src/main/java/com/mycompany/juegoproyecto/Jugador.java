@@ -8,6 +8,8 @@ public class Jugador {
     private String nombre;
     private int posicion;
 
+    
+    
 
     public Jugador(String nombre) {
         this.nombre = nombre;

@@ -8,9 +8,6 @@ public class Jugador {
     private String nombre;
     private int posicion;
 
-    
-    
-
     public Jugador(String nombre) {
         this.nombre = nombre;
         this.posición = 0; // iniciamos en posición 0
@@ -43,8 +40,8 @@ public class Jugador {
 
 
 
-  
-// Pendiente, prueba
+//Implementar esto o eliminarlo
+// Pendiente, prueba 
     //Funcion para controlar posicion del jugador/ 
     public void irAPosicion(int nuevaPosicion) {
         this.posicion = Math.max(nuevaPosicion, 0);

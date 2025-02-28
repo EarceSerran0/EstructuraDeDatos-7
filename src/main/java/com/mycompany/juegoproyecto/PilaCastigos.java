@@ -16,7 +16,7 @@ public class PilaCastigos extends PilaJuego  {
 
     @Override
     public void listarPila() {
-        Nodo actual = obtenerTopNodo();  // Usamos el método público de la clase base
+        Nodo actual = obtenerTopNodo(); 
         if (actual == null) {
             JOptionPane.showMessageDialog(null, "No hay castigos disponibles.");
             return;

@@ -1,0 +1,23 @@
+
+public class NodoJugador {
+    private Jugador jugador;
+    private NodoJugador siguiente;
+
+    public NodoJugador(Jugador jugador) {
+        this.jugador = jugador;
+        this.siguiente = null;
+    }
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public NodoJugador getSiguiente() {
+        return siguiente;
+    }
+
+    public void setSiguiente(NodoJugador siguiente) {
+        this.siguiente = siguiente;
+    }
+}
+

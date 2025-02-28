@@ -4,10 +4,32 @@
  */
 package com.mycompany.juegoproyecto;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author Esteban
  */
-public class PilaCastigos   {
-    
+public class PilaCastigos extends PilaJuego  {
+    public PilaCastigos() {
+        inicializarPila("Castigos");
+    }
+
+    @Override
+    public void listarPila() {
+        Nodo actual = obtenerTopNodo();  // Usamos el método público de la clase base
+        if (actual == null) {
+            JOptionPane.showMessageDialog(null, "No hay castigos disponibles.");
+            return;
+        }
+
+        StringBuilder lista = new StringBuilder("Castigos en la pila:\n");
+
+        while (actual != null) {
+            Datos datos = actual.getPiDatos();
+            lista.append(datos.getOperacion()).append(datos.getNumero()).append("\n");
+            actual = actual.getAbajo();
+        }
+
+        JOptionPane.showMessageDialog(null, lista.toString());
+    }
 }

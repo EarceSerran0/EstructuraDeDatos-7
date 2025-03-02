@@ -56,6 +56,28 @@ public class ColaJugadores {
         }
         JOptionPane.showMessageDialog(null, sb.toString());
     }
+    public void salirDelJuego(String nombre) {
+    ColaJugadores nuevaCola = new ColaJugadores(); 
+    boolean jugadorEncontrado = false;
+
+    while (!this.estaVacia()) {                //recorrer la cola de jugadores
+        Jugador jugador = this.desencolar();   // Sacar cada jugador
+
+        if (!jugador.getNombre().equalsIgnoreCase(nombre)) {
+            nuevaCola.encolar(jugador); 
+        } else {
+            System.out.println("\n⚠️ " + jugador.getNombre() + " ha salido del juego.");
+            jugadorEncontrado = true;
+        }
+    }
+
+    if (!jugadorEncontrado) {
+        System.out.println("\n No se encontró un jugador con ese nombre.");
+    }
+
+    // reemplaza la cola original con la nueva sin el jugador que se fue
+    this.cola = nuevaCola.cola;
+}
 }
 
 

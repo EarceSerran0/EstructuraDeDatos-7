@@ -10,7 +10,8 @@ import java.util.Random;
  *
  * @author Grupo#7
  */
-//Ya trate de implementar las funcion de Jugar, igual se le podrian hacer mejoras, pero yo creo que ya nos la jugamos al menos con esa funcionalidad, falta la funcion 5,6,7 la 7 hay que mejorarla solo esta por encima 
+//Ya trate de implementar las funcion de Jugar, igual se le podrian hacer mejoras, pero yo creo que ya nos la jugamos al menos con esa funcionalidad, falta la funcion 6,7 la 7 hay que mejorarla solo esta por encima
+// Ya implemente la funcion 5 
 public class JuegoProyecto {
 
     public static void main(String[] args) {

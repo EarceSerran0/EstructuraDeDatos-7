@@ -102,14 +102,21 @@ public class JuegoProyecto {
                     break;
 
                 case 5:
+                   String nombreSalir = JOptionPane.showInputDialog("Ingrese el nombre del jugador que quiere salir:");
+                   if (nombreSalir != null && !nombreSalir.trim().isEmpty()) {
+                        colaJugadores.salirDelJuego(nombreSalir);
+                   } else {
+                       JOptionPane.showMessageDialog(null, "❌ Nombre inválido. Intente de nuevo.");
+                   }
+                   break;
+
+                case 6:
                     String mensajeAyuda = "Versión: 4.0.0\nDesarrolladores: Esteban, Diana, Yanko y Andrés";
                     JOptionPane.showMessageDialog(null, mensajeAyuda);
                     break;
-
-                case 6:
+                case 7:
                     juegoActivo = false;
                     break;
-
                 default:
                     break;
             }

@@ -1,7 +1,7 @@
 package com.mycompany.juegoproyecto;
 /**
  *
- * @author Esteban
+ * @author Grupo#7
  */
 
 public class Jugador {
@@ -10,10 +10,9 @@ public class Jugador {
 
     public Jugador(String nombre) {
         this.nombre = nombre;
-        this.posición = 0; // iniciamos en posición 0
+        this.posicion = 0; // iniciamos en posición 0
     }
-
-  
+//getters
     public String getNombre() {
         return nombre;
     }
@@ -21,32 +20,39 @@ public class Jugador {
     public int getPosicion() {
         return posicion;
     }
-    
+    //setters
     public void setPosicion(int posicion) {
-        this.posicion = posicion;
+        this.posicion = Math.max(posicion, 0); // Evitar posiciones negativas
     }
 
-
-   public void avanzar(int cantidad) {
-        this.posición += cantidad;
+    public void avanzar(int cantidad) {
+        this.posicion += cantidad;
     }
 
     public void retroceder(int cantidad) {
-        this.posición -= cantidad;
-        if (this.posición < 0) {
-            this.posición = 0; // No permitir posiciones negativas
+        this.posicion -= cantidad;
+        // No permitir posiciones negativas
+        if (this.posicion < 0) {
+            this.posicion = 0; 
         }
     }
 
-
-
-//Implementar esto o eliminarlo
-// Pendiente, prueba 
-    //Funcion para controlar posicion del jugador/ 
     public void irAPosicion(int nuevaPosicion) {
         this.posicion = Math.max(nuevaPosicion, 0);
     }
     
-   
+    // Aplicar premio o castigo según la operación
+    public void aplicarEfecto(Datos efecto) {
+        switch (efecto.getOperacion()) {
+            case '+':
+                this.avanzar(efecto.getNumero());
+                break;
+            case '-':
+                this.retroceder(efecto.getNumero());
+                break;
+            case '=':
+                this.irAPosicion(efecto.getNumero());
+                break;
+        }
+    }
 }
-

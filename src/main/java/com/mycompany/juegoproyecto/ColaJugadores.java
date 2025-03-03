@@ -1,28 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.juegoproyecto;
-
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Grupo#7
-
  */
 public class ColaJugadores {
     private NodoJugador frente;
     private NodoJugador fin;
+    private int cantidadJugadores;
 
     public ColaJugadores() {
         frente = null;
         fin = null;
+        cantidadJugadores = 0;
     }
     
     public boolean estaVacia() {
-    return frente == null;
-}
+        return frente == null;
+    }
+    
+    public int getCantidadJugadores() {
+        return cantidadJugadores;
+    }
 
     public void agregarJugador(Jugador jugador) {
         NodoJugador nuevoNodo = new NodoJugador(jugador);
@@ -33,59 +32,28 @@ public class ColaJugadores {
             fin.setSiguiente(nuevoNodo);
             fin = nuevoNodo;
         }
+        cantidadJugadores++;
     }
     
     public Jugador quitarJugador() {
-    if (frente != null) {
-        Jugador jugadorQuitado = frente.getJugador();
-        frente = frente.getSiguiente();
-        if (frente == null) {
-            fin = null;
+        if (frente != null) {
+            Jugador jugadorQuitado = frente.getJugador();
+            frente = frente.getSiguiente();
+            if (frente == null) {
+                fin = null;
+            }
+            cantidadJugadores--;
+            return jugadorQuitado;
         }
-        return jugadorQuitado;
+        return null; // Si la cola está vacía, retorna null
     }
-    return null; // Si la cola está vacía, retorna null
-}
-
-    public void listarJugadores() {
-        NodoJugador actual = frente;
-        StringBuilder sb = new StringBuilder();
-        while (actual != null) {
-            sb.append(actual.getJugador().getNombre()).append(" - Posición: ").append(actual.getJugador().getPosicion()).append("\n");
-            actual = actual.getSiguiente();
-        }
-        JOptionPane.showMessageDialog(null, sb.toString());
-    }
-    public void salirDelJuego(String nombre) {
-    ColaJugadores nuevaCola = new ColaJugadores(); 
-    boolean jugadorEncontrado = false;
-
-    while (!this.estaVacia()) {                //recorrer la cola de jugadores
-        Jugador jugador = this.desencolar();   // Sacar cada jugador
-
-        if (!jugador.getNombre().equalsIgnoreCase(nombre)) {
-            nuevaCola.encolar(jugador); 
-        } else {
-            System.out.println("\n⚠️ " + jugador.getNombre() + " ha salido del juego.");
-            jugadorEncontrado = true;
-        }
-    }
-
-    if (!jugadorEncontrado) {
-        System.out.println("\n No se encontró un jugador con ese nombre.");
-    }
-
-    // reemplaza la cola original con la nueva sin el jugador que se fue
-    this.cola = nuevaCola.cola;
-}
-}
-
-
-
-
-
-
-
-
-   
     
+    public Jugador consultarSiguiente() {
+        if (frente != null) {
+            return frente.getJugador();
+        }
+        return null;
+    }
+    
+    
+}

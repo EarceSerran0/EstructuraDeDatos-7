@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.juegoproyecto;
 
 /**
@@ -9,6 +5,7 @@ package com.mycompany.juegoproyecto;
  * @author Grupo#7
  */
 public class NodoJugador {
+
     private Jugador jugador;
     private NodoJugador siguiente;
 
@@ -16,6 +13,7 @@ public class NodoJugador {
         this.jugador = jugador;
         this.siguiente = null;
     }
+//getters
 
     public Jugador getJugador() {
         return jugador;
@@ -24,9 +22,9 @@ public class NodoJugador {
     public NodoJugador getSiguiente() {
         return siguiente;
     }
+//setters
 
     public void setSiguiente(NodoJugador siguiente) {
         this.siguiente = siguiente;
     }
 }
-

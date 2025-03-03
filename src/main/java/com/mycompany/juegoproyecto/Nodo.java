@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.juegoproyecto;
 
 /**
@@ -12,6 +8,7 @@ public class Nodo {
 
     private Datos piDatos;
     private Nodo abajo;
+//getters
 
     public Datos getPiDatos() {
         return piDatos;
@@ -20,6 +17,7 @@ public class Nodo {
     public Nodo getAbajo() {
         return abajo;
     }
+//setters
 
     public void setPiDatos(Datos piDatos) {
         this.piDatos = piDatos;

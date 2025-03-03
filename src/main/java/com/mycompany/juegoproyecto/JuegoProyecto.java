@@ -7,7 +7,7 @@ import java.util.*;
  * @author Grupo#7
  */
 public class JuegoProyecto {
-
+// en caso de no poder utilizar scanner cambiar esto
     private static Scanner scanner = new Scanner(System.in);
     private static final int META = 30; // La meta que tendra el juego , en este caso agregamos como maximo un 25 para que el juego sea rapido.
 

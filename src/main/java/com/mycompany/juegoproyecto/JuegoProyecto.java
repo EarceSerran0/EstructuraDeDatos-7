@@ -27,7 +27,7 @@ public class JuegoProyecto {
         // Menu
         boolean juegoActivo = true;
         while (juegoActivo) {
-            System.out.println("\n===== MENU  =====");
+            System.out.println("\n****** MENU  ******");
             System.out.println("1. Iniciar Juego(ingresar nombres)");
             System.out.println("2. Jugar (Tirar dados)");
             System.out.println("3. Listar pila de premios");

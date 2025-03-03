@@ -1,7 +1,8 @@
 # EstructuraDeDatos-7
 
-Descripción
-Este es un juego de carreras basado en consola donde los jugadores se turnan para tirar dados y avanzar a través del tablero. El objetivo es ser el primer jugador en llegar a la posición meta (posición a escoger). El juego cuenta con un sistema de premios y castigos donde caer en posiciones pares otorga premios y caer en posiciones impares resulta en castigos.
+Descripción:
+
+Juego donde los jugadores se turnan para tirar dados y avanzar a través del tablero. El objetivo es ser el primer jugador en llegar a la posición meta (posición a escoger). El juego cuenta con un sistema de premios y castigos donde caer en posiciones pares otorga premios y caer en posiciones impares resulta en castigos.
 
 
 

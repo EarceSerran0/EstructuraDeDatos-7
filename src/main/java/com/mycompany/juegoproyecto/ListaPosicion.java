@@ -5,7 +5,7 @@
 package com.mycompany.juegoproyecto;
 
 /**
- * Lista simple para almacenar el historico de posiciones de un jugador
+ * Lista simple para almacenar el historico de posiciones de todos los jugadoes
  * @author Grupo#7
  */
 public class ListaPosicion {
@@ -20,7 +20,7 @@ public class ListaPosicion {
 
     /**
      * Obtener el primer nodo de la lista
-     * @return El primer nodo
+     * @return  Nodo #1
      */
     public NodoPosicion getPrimero() {
         return primero;
@@ -81,16 +81,16 @@ public class ListaPosicion {
     }
     
     /**
-     * Recorrer la lista e imprimirla
+     * Recorrer e imprimir la lista
      */
     public void imprimirLista() {
         if (primero == null) {
-            System.out.println("El historial de posiciones esta vacio");
+            System.out.println("El historial esta vacio");
             return;
         }
         
         NodoPosicion actual = primero;
-        System.out.println("\n----- Historial de Posiciones -----");
+        System.out.println("\n----- Historial de Posicion -----");
         System.out.println("Posicion | Fecha | Efecto");
         while (actual != null) {
             System.out.println(actual.getPosicion() + " | " + 
@@ -101,7 +101,7 @@ public class ListaPosicion {
     }
     
     /**
-     * Verificar si la lista esta vacia
+     * Verifica si la lista esta vacia
      * @return true si la lista esta vacia, false en caso contrario
      */
     public boolean estaVacia() {

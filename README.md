@@ -73,12 +73,11 @@ Equipo de Desarrollo
 
 Esteban Arce
 Diana Medina
-Yanko Domenech
 Andrés Quesada
 
 
 Versión
-1.0
+1.2
 
 
 

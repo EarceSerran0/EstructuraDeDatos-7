@@ -14,6 +14,7 @@ public class JuegoProyecto {
     public static void main(String[] args) {
         
         ColaJugadores colaJugadores = new ColaJugadores();
+        boolean permitirAgregarJugadores = true;
         PilaPremios pilaPremios = new PilaPremios();
         PilaCastigos pilaCastigos = new PilaCastigos();
         Random random = new Random();
@@ -36,6 +37,7 @@ public class JuegoProyecto {
             System.out.println("6. Listar Jugadores");
             System.out.println("7. Ayuda");
             System.out.println("8. Salir\n");
+            System.out.println("9. Adicionar Jugador");
             System.out.print("Seleccione una opcion: ");
             
             int seleccion;
@@ -80,6 +82,18 @@ public class JuegoProyecto {
                     juegoActivo = false;
                     System.out.println("Gracias por jugar");
                     break;
+                    
+                case 9: // Adicionar jugador
+                    if (permitirAgregarJugadores) {
+                       System.out.print("Ingrese el nombre del nuevo jugador: ");
+                       String nuevoNombre = scanner.nextLine();
+                       Jugador nuevoJugador = new Jugador(nuevoNombre);
+                       colaJugadores.agregarJugador(nuevoJugador); 
+                       System.out.println("Jugador agregado exitosamente.");
+                    } else {
+                       System.out.println(" Error, La configuración de este juego no permite ingresar más jugadores, deberá esperar a que inicie uno nuevo.");
+                    }
+                    break;
 
                 default:
                     System.out.println("Opción invalida, intente de nuevo.");
@@ -120,6 +134,14 @@ public class JuegoProyecto {
             System.out.println("Se inscribieron " + numJugadores + " jugadores");
         } catch (NumberFormatException e) {
             System.out.println("Error: Debe ingresar un numero valido.");
+        }
+        System.out.print("¿Desea permitir que se agreguen más jugadores después de iniciar el juego? (S/N): ");
+        String respuesta = scanner.nextLine().toUpperCase();
+
+        if (respuesta.equals("S")) {
+        permitirAgregarJugadores = true;
+        } else {
+        permitirAgregarJugadores = false;
         }
     }
     

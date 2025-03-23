@@ -14,7 +14,7 @@ import java.util.Date;
 public class NodoPosicion {
 
     private int posicion;
-    private Date timestamp;
+    private Date fechaHora;
     private String efecto;
     private NodoPosicion siguiente;
 
@@ -26,7 +26,7 @@ public class NodoPosicion {
      */
     public NodoPosicion(int posicion, String efecto) {
         this.posicion = posicion;
-        this.timestamp = new Date(); // hora actual
+        this.fechaHora= new Date(); // hora actual
         this.efecto = efecto;
         this.siguiente = null;
     }
@@ -41,11 +41,11 @@ public class NodoPosicion {
     }
 
     public Date getTimestamp() {
-        return timestamp;
+        return fechaHora;
     }
 
     public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
+        this.fechaHora = timestamp;
     }
 
     public String getEfecto() {

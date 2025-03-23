@@ -26,4 +26,13 @@ public class Datos {
     public String toString() {
         return operacion + " " + numero;
     }
+    
+    private boolean permitirAgregarJugadores;
+    public boolean isPermitirAgregarJugadores() {
+    return permitirAgregarJugadores;
+    }
+
+    public void setPermitirAgregarJugadores(boolean permitirAgregarJugadores) {
+    this.permitirAgregarJugadores = permitirAgregarJugadores;
+    }
 }

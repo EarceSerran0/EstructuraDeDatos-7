@@ -6,15 +6,18 @@ package com.mycompany.juegoproyecto;
 
 /**
  * Nodo para la lista circular del estado actual del juego
+ *
  * @author Grupo#7
  */
 public class NodoPosicionPartida {
+
     private int posicion;
     private String nombreJugador; // Vacio si no hay jugador
     private NodoPosicionPartida siguiente;
 
     /**
      * Constructor para el nodo de posicion en el juego
+     *
      * @param posicion La posicion en el tablero
      */
     public NodoPosicionPartida(int posicion) {
@@ -47,9 +50,10 @@ public class NodoPosicionPartida {
     public void setSiguiente(NodoPosicionPartida siguiente) {
         this.siguiente = siguiente;
     }
-    
+
     /**
      * Verificar si la posicion esta vacia (sin jugador)
+     *
      * @return true si la posicion esta vacia, false en caso contrario
      */
     public boolean estaVacia() {

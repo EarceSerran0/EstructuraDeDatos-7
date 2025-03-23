@@ -6,9 +6,11 @@ package com.mycompany.juegoproyecto;
 
 /**
  * Lista simple para almacenar el historico de posiciones de todos los jugadoes
+ *
  * @author Grupo#7
  */
 public class ListaPosicion {
+
     private NodoPosicion primero;
 
     /**
@@ -20,7 +22,8 @@ public class ListaPosicion {
 
     /**
      * Obtener el primer nodo de la lista
-     * @return  Nodo #1
+     *
+     * @return Nodo #1
      */
     public NodoPosicion getPrimero() {
         return primero;
@@ -28,47 +31,49 @@ public class ListaPosicion {
 
     /**
      * Establecer el primer nodo de la lista
+     *
      * @param primero El nuevo nodo primero
      */
     public void setPrimero(NodoPosicion primero) {
         this.primero = primero;
     }
-    
+
     /**
-     * Insertar una posicion en la lista ordenada de menor a mayor
-     * Si la posicion ya existe, se reescribe con la nueva informacion
+     * Insertar una posicion en la lista ordenada de menor a mayor Si la
+     * posicion ya existe, se reescribe con la nueva informacion
+     *
      * @param posicion Posicion del jugador
      * @param efecto Descripcion del castigo o premio recibido
      */
     public void insertarPosicion(int posicion, String efecto) {
         NodoPosicion nuevo = new NodoPosicion(posicion, efecto);
-        
+
         // Caso 1: Lista vacia
         if (primero == null) {
             primero = nuevo;
             return;
         }
-        
+
         // Caso 2: Reemplazar el primero si tiene la misma posicion
         if (primero.getPosicion() == posicion) {
             nuevo.setSiguiente(primero.getSiguiente());
             primero = nuevo;
             return;
         }
-        
+
         // Caso 3: Insertar al inicio si es menor que el primero
         if (posicion < primero.getPosicion()) {
             nuevo.setSiguiente(primero);
             primero = nuevo;
             return;
         }
-        
+
         // Caso 4: Insertar en cualquier otra posicion
         NodoPosicion actual = primero;
         while (actual.getSiguiente() != null && actual.getSiguiente().getPosicion() < posicion) {
             actual = actual.getSiguiente();
         }
-        
+
         // Si encontramos un nodo con la misma posicion, lo reemplazamos
         if (actual.getSiguiente() != null && actual.getSiguiente().getPosicion() == posicion) {
             nuevo.setSiguiente(actual.getSiguiente().getSiguiente());
@@ -79,7 +84,7 @@ public class ListaPosicion {
             actual.setSiguiente(nuevo);
         }
     }
-    
+
     /**
      * Recorrer e imprimir la lista
      */
@@ -88,20 +93,21 @@ public class ListaPosicion {
             System.out.println("El historial esta vacio");
             return;
         }
-        
+
         NodoPosicion actual = primero;
         System.out.println("\n----- Historial de Posicion -----");
         System.out.println("Posicion | Fecha | Efecto");
         while (actual != null) {
-            System.out.println(actual.getPosicion() + " | " + 
-                               actual.getTimestamp() + " | " + 
-                               actual.getEfecto());
+            System.out.println(actual.getPosicion() + " | "
+                    + actual.getTimestamp() + " | "
+                    + actual.getEfecto());
             actual = actual.getSiguiente();
         }
     }
-    
+
     /**
      * Verifica si la lista esta vacia
+     *
      * @return true si la lista esta vacia, false en caso contrario
      */
     public boolean estaVacia() {

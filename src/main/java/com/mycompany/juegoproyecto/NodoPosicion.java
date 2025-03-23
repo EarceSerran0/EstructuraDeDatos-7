@@ -8,9 +8,11 @@ import java.util.Date;
 
 /**
  * Nodo que almacena las posiciones historicas de un jugador
+ *
  * @author Grupo#7
  */
 public class NodoPosicion {
+
     private int posicion;
     private Date timestamp;
     private String efecto;
@@ -18,6 +20,7 @@ public class NodoPosicion {
 
     /**
      * Constructor
+     *
      * @param posicion La posicion del jugador
      * @param efecto Descripcion del castigo o premio obtenido
      */

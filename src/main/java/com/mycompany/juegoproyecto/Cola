@@ -1,1 +1,51 @@
+package com.mycompany.juegoproyecto;
+
+public class Cola {
+
+    private NodoJugador frente;
+    private NodoJugador fin;
+    private int cantidad;
+
+    public Cola() {
+        frente = null;
+        fin = null;
+        cantidad = 0;
+    }
+
+    public boolean estaVacia() {
+        return frente == null;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void agregar(NodoJugador nuevoNodo) {
+        if (frente == null) {
+            frente = nuevoNodo;
+            fin = nuevoNodo;
+        } else {
+            fin.setSiguiente(nuevoNodo);
+            fin = nuevoNodo;
+        }
+        cantidad++;
+    }
+
+    public NodoJugador quitar() {
+        if (frente != null) {
+            NodoJugador nodoQuitado = frente;
+            frente = frente.getSiguiente();
+            if (frente == null) {
+                fin = null;
+            }
+            cantidad--;
+            return nodoQuitado;
+        }
+        return null;
+    }
+
+    public NodoJugador consultarFrente() {
+        return frente;
+    }
+}
 

@@ -62,4 +62,23 @@ public class ColaJugadores extends Cola {
         }//sig
         return null;
     }
+    public void adicionarJugador(String nombre) {
+    Jugador nuevoJugador = new Jugador(nombre);
+    NodoJugador nuevoNodo = new NodoJugador(nuevoJugador);
+
+    if (inicio == null) {
+        inicio = nuevoNodo;
+        inicio.setSiguiente(inicio);
+        inicio.setAnterior(inicio);
+    } else {
+        NodoJugador ultimo = inicio.getAnterior();
+
+        ultimo.setSiguiente(nuevoNodo);
+        nuevoNodo.setAnterior(ultimo);
+        nuevoNodo.setSiguiente(inicio);
+        inicio.setAnterior(nuevoNodo);
+    }
+
+    System.out.println("Jugador '" + nombre + "' agregado.");
+    }
 }

@@ -27,7 +27,7 @@ public abstract class Cola {
         return cantidadElementos;
     }
 
-    // Metodos abstractos para las clases hijas
+    // Metodos  para las clases hijas
     public abstract void encolar(Object elemento);
     public abstract Object desencolar();
     public abstract Object consultarFrente();

@@ -19,7 +19,7 @@ public class NodoPosicionPartida {
      */
     public NodoPosicionPartida(int posicion) {
         this.posicion = posicion;
-        this.nombreJugador = "VACIA";
+        this.nombreJugador = "Vacia";
         this.siguiente = null;
     }
 
@@ -53,6 +53,6 @@ public class NodoPosicionPartida {
      * @return true si la posicion esta vacia, false en caso contrario
      */
     public boolean estaVacia() {
-        return "VACIA".equals(nombreJugador);
+        return "Vacia".equals(nombreJugador);
     }
 }

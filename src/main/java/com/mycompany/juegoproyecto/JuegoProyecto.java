@@ -13,6 +13,7 @@ public class JuegoProyecto {
     private static boolean permitirNuevosJugadores = true; // Valor por defecto
     private static JugadorHistorial historialJugadores = new JugadorHistorial();
     private static EstadoDeJuego estadoJuego = null;
+    private static chatbot chatbot = new chatbot(); // Instancia del chatbot
 
     public static void main(String[] args) {
 

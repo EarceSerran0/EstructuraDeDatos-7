@@ -12,9 +12,9 @@ public class NodoPreguntas {
     
     private String codigo;
     private String nombre;
-    private ListaPreguntas listaPreguntas;
-    private NodoPregunta izquierda;
-    private NodoPregunta derecha;
+    private listaPreguntas listaPreguntas;
+    private NodoPreguntas izquierda;
+    private NodoPreguntas derecha;
     
     /**
      * Constructor para el nodo de preguntas
@@ -22,10 +22,10 @@ public class NodoPreguntas {
      * @param codigo Identificador del nodo, sigue un patron especifico (codigo padre + consecutivo)
      * @param nombre Nombre descriptivo del nodo
      */
-    public NodoPregunta(String codigo, String nombre) {
+    public NodoPreguntas(String codigo, String nombre) {
         this.codigo = codigo;
         this.nombre = nombre;
-        this.listaPreguntas = new ListaPreguntas();
+        this.listaPreguntas = new listaPreguntas();
         this.izquierda = null;
         this.derecha = null;
     }
@@ -71,7 +71,7 @@ public class NodoPreguntas {
      * 
      * @return La lista de preguntas
      */
-    public ListaPreguntas getListaPreguntas() {
+    public listaPreguntas getListaPreguntas() {
         return listaPreguntas;
     }
     
@@ -80,7 +80,7 @@ public class NodoPreguntas {
      * 
      * @param listaPreguntas La nueva lista de preguntas
      */
-    public void setListaPreguntas(ListaPreguntas listaPreguntas) {
+    public void setListaPreguntas(listaPreguntas listaPreguntas) {
         this.listaPreguntas = listaPreguntas;
     }
     
@@ -89,7 +89,7 @@ public class NodoPreguntas {
      * 
      * @return El nodo hijo izquierdo
      */
-    public NodoPregunta getIzquierda() {
+    public NodoPreguntas getIzquierda() {
         return izquierda;
     }
     
@@ -98,7 +98,7 @@ public class NodoPreguntas {
      * 
      * @param izquierda El nuevo nodo hijo izquierdo
      */
-    public void setIzquierda(NodoPregunta izquierda) {
+    public void setIzquierda(NodoPreguntas izquierda) {
         this.izquierda = izquierda;
     }
     
@@ -107,7 +107,7 @@ public class NodoPreguntas {
      * 
      * @return El nodo hijo derecho
      */
-    public NodoPregunta getDerecha() {
+    public NodoPreguntas getDerecha() {
         return derecha;
     }
     
@@ -116,7 +116,7 @@ public class NodoPreguntas {
      * 
      * @param derecha El nuevo nodo hijo derecho
      */
-    public void setDerecha(NodoPregunta derecha) {
+    public void setDerecha(NodoPreguntas derecha) {
         this.derecha = derecha;
     }
     
@@ -137,7 +137,7 @@ public class NodoPreguntas {
      * @param respuesta Respuesta a la pregunta
      */
     public void agregarPregunta(String codigo, String nombre, String respuesta) {
-        Pregunta pregunta = new Pregunta(codigo, nombre, respuesta);
+        preguntas pregunta = new preguntas(codigo, nombre, respuesta);
         listaPreguntas.insertarPregunta(pregunta);
     }
 }

@@ -40,7 +40,8 @@ public class JuegoProyecto {
             System.out.println("8. Estado Actual del Juego");
             System.out.println("9. Bitacora-Historial");
             System.out.println("10. Ayuda");
-            System.out.println("11. Salir\n");
+            System.out.println("11. Chatbot de Preguntas Frecuentes"); 
+            System.out.println("12. Salir\n");
             System.out.print("Seleccione una opcion: ");
 
             int seleccion;
@@ -92,7 +93,11 @@ public class JuegoProyecto {
                     mostrarAyuda();
                     break;
 
-                case 11: // Salir
+                case 11: // Chatbot de Preguntas Frecuentes (nueva opción)
+                    chatbot.iniciar();
+                    break;
+
+                case 12: // Salir (cambió de 11 a 12)
                     juegoActivo = false;
                     System.out.println("Gracias por jugar");
                     break;
@@ -105,6 +110,7 @@ public class JuegoProyecto {
 
         scanner.close();
     }
+
 
     // Metodo para iniciar el juego e inscribir jugadores
     private static void iniciarJuego(ColaJugadores colaJugadores) {
@@ -591,7 +597,7 @@ public class JuegoProyecto {
     // Metodo para mostrar la ayuda
     private static void mostrarAyuda() {
         System.out.println("\n===== AYUDA DEL JUEGO =====");
-        System.out.println("Version:1.2 ");
+        System.out.println("Version:1.3 "); // Actualizado a versión 1.3
         System.out.println("Desarrollado por: Esteban, Diana y Andres\n");
         System.out.println("\nINSTRUCCIONES:");
         System.out.println("1. Inicie el juego registrando entre 1 y 4 jugadores.");
@@ -603,11 +609,13 @@ public class JuegoProyecto {
         System.out.println("7. Puede adicionar nuevos jugadores durante el juego si esta habilitado.");
         System.out.println("8. Consulte el estado actual del juego para ver todas las posiciones.");
         System.out.println("9. Revise la bitacora-historial para ver el recorrido de cada jugador.");
+        System.out.println("10. Use el chatbot para responder preguntas frecuentes sobre el juego.");
         System.out.println("\nNOVEDADES EN ESTA VERSION:");
         System.out.println("- Posibilidad de configurar la posicion maxima del juego");
         System.out.println("- Control de jugadores que se pasan de la meta");
         System.out.println("- Visualizacion del estado del tablero");
         System.out.println("- Bitacora completa del recorrido de cada jugador");
+        System.out.println("- Chatbot de preguntas frecuentes con estructura de arbol binario");
 
     }
 }

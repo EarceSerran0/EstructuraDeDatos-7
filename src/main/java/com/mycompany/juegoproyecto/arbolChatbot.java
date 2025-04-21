@@ -174,7 +174,7 @@ public class arbolChatbot {
     }
 
     /**
-     * Precargar el arbol con la estructura y preguntas iniciales
+     * Precargar el arbol con preguntas iniciales
      */
     public void precargarArbol() {
 

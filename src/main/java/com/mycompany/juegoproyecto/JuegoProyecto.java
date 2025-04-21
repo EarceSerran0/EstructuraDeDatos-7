@@ -606,7 +606,7 @@ public class JuegoProyecto {
         System.out.println("8. Consulte el estado actual del juego para ver todas las posiciones.");
         System.out.println("9. Revise la bitacora-historial para ver el recorrido de cada jugador.");
         System.out.println("10. Use el chatbot para responder preguntas frecuentes sobre el juego.");
-        System.out.println("\nNOVEDADES EN ESTA VERSION:");
+        System.out.println("\n NOVEDADES EN ESTA VERSION:");
         System.out.println("- Posibilidad de configurar la posicion maxima del juego");
         System.out.println("- Control de jugadores que se pasan de la meta");
         System.out.println("- Visualizacion del estado del tablero");

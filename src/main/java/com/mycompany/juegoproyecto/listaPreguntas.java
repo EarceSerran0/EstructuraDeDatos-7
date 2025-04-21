@@ -29,12 +29,7 @@ public class listaPreguntas {
     public boolean estaVacia() {
         return cabeza == null;
     }
-    
-    /**
-     * Obtener la cantidad de preguntas en la lista
-     * 
-     * @return El numero de preguntas
-     */
+    //getter
     public int getCantidad() {
         return cantidad;
     }

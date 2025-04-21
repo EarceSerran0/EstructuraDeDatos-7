@@ -56,12 +56,13 @@ public class arbolChatbot {
             return nodoActual;
         }
         
-        // Comparar los codigos para determinar en que subárbol buscar
-        if (codigo.compareTo(nodoActual.getCodigo()) < 0) {
-            return buscarNodoRecursivo(nodoActual.getIzquierda(), codigo);
-        } else {
-            return buscarNodoRecursivo(nodoActual.getDerecha(), codigo);
+        // Buscar en ambos subarboles, ya que el codigo no es comparable de forma natural
+        NodoPreguntas encontradoIzquierda = buscarNodoRecursivo(nodoActual.getIzquierda(), codigo);
+        if (encontradoIzquierda != null) {
+            return encontradoIzquierda;
         }
+        
+        return buscarNodoRecursivo(nodoActual.getDerecha(), codigo);
     }
     
     /**
@@ -79,6 +80,7 @@ public class arbolChatbot {
         // Buscar el nodo padre
         NodoPreguntas nodoPadre = buscarNodo(codigoPadre);
         if (nodoPadre == null) {
+            System.out.println("No se encontró el nodo padre: " + codigoPadre);
             return false; // No se encontro el nodo padre
         }
         
@@ -142,6 +144,13 @@ public class arbolChatbot {
             nodo.agregarPregunta(codigoPregunta, nombrePregunta, respuesta);
             return true;
         }
+        
+        if (nodo == null) {
+            System.out.println("No se encontró el nodo: " + codigoNodo);
+        } else if (!nodo.esHoja()) {
+            System.out.println("El nodo " + codigoNodo + " no es una hoja");
+        }
+        
         return false;
     }
     
@@ -166,6 +175,8 @@ public class arbolChatbot {
      * Precargar el arbol con la estructura y preguntas iniciales
      */
     public void precargarArbol() {
+        
+        
         // Nivel 2: Hijos de la raiz (codigo 1)
         insertarNodo("1", "1", "Preguntas para jugadores");
         insertarNodo("1", "2", "Preguntas para Administradores");
@@ -186,15 +197,15 @@ public class arbolChatbot {
         insertarNodo("121", "2", "Mejorar Juego");
         
         // Preguntas para el nodo "1111" (Soy nuevo en videojuegos)
-        insertarPregunta("1111", "1", "¿Cuantos Jugadores pueden participar simultáneamente?", 
+        insertarPregunta("1111", "1", "Cuantos Jugadores pueden participar simultáneamente?", 
                         "Se tiene un maximo de 4 jugadores.");
-        insertarPregunta("1111", "2", "¿Hay un tiempo maximo por partida?", 
+        insertarPregunta("1111", "2", "Hay un tiempo maximo por partida?", 
                         "No, el juego termina cuando un jugador alcance la posicion maxima.");
         
         // Preguntas para el nodo "1112" (Ya he jugado otros juegos similares)
-        insertarPregunta("1112", "1", "¿Puedo jugar en linea?", 
+        insertarPregunta("1112", "1", "Puedo jugar en linea?", 
                         "No, en la version liberada no se permite jugar en linea.");
-        insertarPregunta("1112", "2", "¿Si hay un ganador, los demas jugadores pueden continuar?", 
+        insertarPregunta("1112", "2", "Si hay un ganador, los demas jugadores pueden continuar?", 
                         "Si, no hay restriccion que les impida continuar.");
         
         // Preguntas para el nodo "112" (Jugador Experimentado)
@@ -202,14 +213,17 @@ public class arbolChatbot {
                         "No, pero es una excelente idea. Te invito a fundarla.");
         insertarPregunta("112", "2", "En que lenguaje fue implementado", 
                         "El juego fue implementado en JAVA.");
-        insertarPregunta("112", "3", "¿Cuando liberan una nueva version?", 
+        insertarPregunta("112", "3", "Cuando liberan una nueva version?", 
                         "Esperamos liberar una nueva version en noviembre de 2024.");
+        
+       
     }
     
     /**
      * Recorrer el arbol en preorden e imprimir los nodos
      */
     public void recorrerPreorden() {
+        System.out.println("\n**** ESTRUCTURA DEL ARBOL ****");
         recorrerPreordenRec(raiz, 0);
     }
     

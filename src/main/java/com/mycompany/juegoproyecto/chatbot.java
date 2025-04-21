@@ -34,7 +34,7 @@ public class chatbot {
         boolean salir = false;
         
         while (!salir) {
-            System.out.println("\n****CHATBOT DE PREGUNTAS FRECUENTES ****");
+            System.out.println("\n**** CHATBOT DE PREGUNTAS FRECUENTES ****");
             System.out.println("1. Ver chatbot (Usuarios)");
             System.out.println("2. Mantenimiento del chatbot (Administradores)");
             System.out.println("3. Volver al menu principal");
@@ -71,7 +71,7 @@ public class chatbot {
      */
     private void verChatbot() {
         // Mensaje de bienvenida
-        System.out.println("\n¡Bienvenido al Chatbot de Preguntas Frecuentes! ¿En que puedo ayudarte hoy?");
+        System.out.println("\n Bienvenido al Chatbot de Preguntas Frecuentes! ¿En que puedo ayudarte hoy?");
         
         // Comenzar en el nodo raiz
         NodoPreguntas nodoActual = arbolPreguntas.getRaiz();
@@ -79,7 +79,7 @@ public class chatbot {
         
         while (!salir) {
             // Mostrar opciones disponibles
-            System.out.println("\n=== " + nodoActual.getNombre() + " ===");
+            System.out.println("\n **** " + nodoActual.getNombre() + " ****");
             
             // Si es un nodo hoja, mostrar las preguntas
             if (nodoActual.esHoja()) {
@@ -133,18 +133,18 @@ public class chatbot {
                         if (nodoPadre != null) {
                             nodoActual = nodoPadre;
                         } else {
-                            // Si no hay nodo padre, volver a la raiz
+                           
                             nodoActual = arbolPreguntas.getRaiz();
                         }
                     } else if (seleccion >= 1 && seleccion <= listaPreguntas.getCantidad()) {
                         // Mostrar la respuesta a la pregunta seleccionada
                         preguntas pregunta = listaPreguntas.obtenerPreguntaPorPosicion(seleccion);
                         if (pregunta != null) {
-                            System.out.println("\nPregunta: " + pregunta.getNombre());
+                            System.out.println("\n Pregunta: " + pregunta.getNombre());
                             System.out.println("Respuesta: " + pregunta.getRespuesta());
                             
                             // Esperar a que el usuario presione Enter para continuar
-                            System.out.println("\nPresione Enter para continuar...");
+                            System.out.println("\n Presione Enter para continuar...");
                             scanner.nextLine();
                         } else {
                             System.out.println("Pregunta no encontrada.");
@@ -173,12 +173,12 @@ public class chatbot {
                     tieneOpciones = true;
                 }
                 
-                // Si no hay opciones disponibles (raro pero posible)
+            
                 if (!tieneOpciones) {
                     System.out.println("No hay opciones disponibles en esta categoria.");
                 }
                 
-                // Opcion para regresar (excepto en la raiz)
+             
                 if (!nodoActual.getCodigo().equals("1")) {
                     System.out.println("0. Regresar");
                 } else {
@@ -199,7 +199,7 @@ public class chatbot {
                 if (seleccion == 0) {
                     if (nodoActual.getCodigo().equals("1")) {
                         // Si estamos en la raiz, salir del chatbot
-                        System.out.println("¡Gracias por usar nuestro chatbot! ¡Hasta pronto!");
+                        System.out.println("Gracias por usar nuestro chatbot! ¡Hasta pronto!");
                         salir = true;
                     } else {
                         // Regresar al nodo padre
@@ -236,25 +236,24 @@ public class chatbot {
             return null;
         }
 
-        // El codigo del padre es el codigo del hijo sin el ultimo caracter
         String codigoPadre = codigoHijo.substring(0, codigoHijo.length() - 1);
         return arbolPreguntas.buscarNodo(codigoPadre);
     }
 
     /**
-     * Interfaz para el mantenimiento del chatbot (administradores)
+     *  chatbot (administradores)
      */
     private void mantenimientoChatbot() {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println("\n**** MANTENIMIENTO DEL CHATBOT ****");
-            System.out.println("1. Insertar/Modificar preguntas padres (Nodos arbol)");
-            System.out.println("2. Insertar/Modificar preguntas hijas (preguntas)");
+            System.out.println("\n===== MANTENIMIENTO DEL CHATBOT =====");
+            System.out.println("1. Insertar/Modificar preguntas padres (Nodos del arbol)");
+            System.out.println("2. Insertar/Modificar preguntas hijas (Lista de preguntas)");
             System.out.println("3. Imprimir preguntas de un nodo");
             System.out.println("4. Imprimir estructura del arbol");
-            System.out.println("5. Volver al menu anterior");
-            System.out.print("Seleccione una opcion:");
+            System.out.println("5. Volver al menu de chatbot");
+            System.out.print("Seleccione una opcion: ");
 
             int opcion;
             try {
@@ -275,31 +274,31 @@ public class chatbot {
                     imprimirPreguntas();
                     break;
                 case 4:
-                    System.out.println("\n*** ESTRUCTURA DEL ARBOL DE PREGUNTAS *** ");
+                    System.out.println("\n **** ESTRUCTURA DEL ARBOL DE PREGUNTAS ****");
                     arbolPreguntas.recorrerPreorden();
                     break;
                 case 5:
                     salir = true;
                     break;
                 default:
-                    System.out.println("Opcion invalida, intente nuvamente!");
+                    System.out.println("Opcion invalida, intente de nuevo.");
                     break;
             }
         }
     }
 
     /**
-     * Insertar o modificar un nodo en el arbol
+     * Insertar o modificar un nodo 
      */
     private void insertarModificarNodo() {
-        System.out.println("\n***  INSERTAR/MODIFICAR NODO *** ");
+        System.out.println("\n**** INSERTAR/MODIFICAR NODO ****");
 
-        // Mostrar la estructura actual del arbol
-        System.out.println("Estructura del arbol actual:");
+        // Mostrar la estructura del arbol
+        System.out.println("Estructura actual del arbol:");
         arbolPreguntas.recorrerPreorden();
 
         // Solicitar codigo del nodo padre
-        System.out.print("\nIngrese el codigo del nodo padre: ");
+        System.out.print("\n Ingrese el codigo del nodo padre: ");
         String codigoPadre = scanner.nextLine();
 
         // Verificar que el nodo padre existe
@@ -309,7 +308,7 @@ public class chatbot {
             return;
         }
 
-        // Solicitar el consecutivo (1 o 2)
+        // Solicitar el consecutivo 
         System.out.print("Ingrese el consecutivo (1 para hijo izquierdo, 2 para hijo derecho): ");
         String consecutivo = scanner.nextLine();
 
@@ -341,17 +340,17 @@ public class chatbot {
      * Insertar o modificar una pregunta en un nodo hoja
      */
     private void insertarModificarPregunta() {
-        System.out.println("\n***  INSERTAR/MODIFICAR PREGUNTA ***");
+        System.out.println("\n ****INSERTAR/MODIFICAR PREGUNTA ****");
 
-        // Mostrar la estructura actual del arbol
-        System.out.println("Estructura del arbol actual:");
+        // Mostrar estructura actual del arbol
+        System.out.println("Estructura actual del arbol:");
         arbolPreguntas.recorrerPreorden();
 
         // Solicitar codigo del nodo
         System.out.print("\n Ingrese el codigo del nodo donde insertar la pregunta: ");
         String codigoNodo = scanner.nextLine();
 
-        // Verificar que el nodo existe y es una hoja
+        // Verificar el nodo existe y es una hoja
         NodoPreguntas nodo = arbolPreguntas.buscarNodo(codigoNodo);
         if (nodo == null) {
             System.out.println("Error: El nodo con codigo " + codigoNodo + " no existe.");
@@ -363,29 +362,29 @@ public class chatbot {
             return;
         }
 
-        // Solicitar el codigo de la pregunta
+        // Solicitar  codigo de la pregunta
         System.out.print("Ingrese el codigo de la pregunta: ");
         String codigoPregunta = scanner.nextLine();
 
         if (codigoPregunta.trim().isEmpty()) {
-            System.out.println("Error: El codigo de la pregunta no debe estar vacio.");
+            System.out.println("Error: El codigo de la pregunta no puede estar vacio.");
             return;
         }
 
-        // Verificar si la pregunta ya existe
+        // Verificar si  pregunta ya existe
         preguntas preguntaExistente = nodo.getListaPreguntas().buscarPregunta(codigoPregunta);
         boolean esModificacion = preguntaExistente != null;
 
-        // Solicitar el nombre de la pregunta
+        // Solicitar nombre de la pregunta
         System.out.print("Ingrese el texto de la pregunta: ");
         String nombrePregunta = scanner.nextLine();
 
         if (nombrePregunta.trim().isEmpty()) {
-            System.out.println("Error: El texto de la pregunta no debw estar vacio.");
+            System.out.println("Error: El texto de la pregunta no puede estar vacio.");
             return;
         }
 
-        // Solicitar la respuesta
+        // Solicitar respuesta
         System.out.print("Ingrese la respuesta a la pregunta: ");
         String respuesta = scanner.nextLine();
 
@@ -394,21 +393,21 @@ public class chatbot {
             return;
         }
 
-        // Insertar o modificar la pregunta
+        // Insertar o modificar  pregunta
         boolean exito;
         if (esModificacion) {
             exito = arbolPreguntas.modificarPregunta(codigoNodo, codigoPregunta, nombrePregunta, respuesta);
             if (exito) {
                 System.out.println("Pregunta modificada correctamente.");
             } else {
-                System.out.println("Error");
+                System.out.println("Error al modificar la pregunta.");
             }
         } else {
             exito = arbolPreguntas.insertarPregunta(codigoNodo, codigoPregunta, nombrePregunta, respuesta);
             if (exito) {
                 System.out.println("Pregunta insertada correctamente.");
             } else {
-                System.out.println("Error");
+                System.out.println("Error al insertar la pregunta.");
             }
         }
     }
@@ -417,7 +416,7 @@ public class chatbot {
      * Imprimir las preguntas de un nodo especifico
      */
     private void imprimirPreguntas() {
-        System.out.println("\n*** IMPRIMIR PREGUNTAS DE UN NODO ***");
+        System.out.println("\n=== IMPRIMIR PREGUNTAS DE UN NODO ===");
 
         // Mostrar la estructura actual del arbol
         System.out.println("Estructura actual del arbol:");
@@ -435,7 +434,7 @@ public class chatbot {
         }
 
         // Mostrar las preguntas
-        System.out.println("\n *** Preguntas del nodo [" + nodo.getCodigo() + "] " + nodo.getNombre() + " ***");
+        System.out.println("\n **** Preguntas del nodo [" + nodo.getCodigo() + "] " + nodo.getNombre() + " ****");
 
         if (!nodo.esHoja()) {
             System.out.println("Este nodo no es una hoja, por lo tanto no tiene preguntas.");

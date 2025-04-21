@@ -40,7 +40,7 @@ public class JuegoProyecto {
             System.out.println("8. Estado Actual del Juego");
             System.out.println("9. Bitacora-Historial");
             System.out.println("10. Ayuda");
-            System.out.println("11. Chatbot de Preguntas Frecuentes"); 
+            System.out.println("11. Chatbot de Preguntas Frecuentes");
             System.out.println("12. Salir\n");
             System.out.print("Seleccione una opcion: ");
 
@@ -93,11 +93,11 @@ public class JuegoProyecto {
                     mostrarAyuda();
                     break;
 
-                case 11: // Chatbot de Preguntas Frecuentes (nueva opción)
+                case 11: // Chatbot de Preguntas Frecuentes 
                     chatbot.iniciar();
                     break;
 
-                case 12: // Salir (cambió de 11 a 12)
+                case 12: // Salir 
                     juegoActivo = false;
                     System.out.println("Gracias por jugar");
                     break;
@@ -110,7 +110,6 @@ public class JuegoProyecto {
 
         scanner.close();
     }
-
 
     // Metodo para iniciar el juego e inscribir jugadores
     private static void iniciarJuego(ColaJugadores colaJugadores) {
@@ -433,10 +432,7 @@ public class JuegoProyecto {
 
             // Agregar al historial
             historialJugadores.agregarPosicionJugador(
-                    jugadorEliminado.getNombre(),
-                    -1,
-                    "Abandono el juego"
-            );
+                    jugadorEliminado.getNombre(), -1, "Abandono el juego");
         }
 
         if (!encontrado) {
@@ -480,7 +476,7 @@ public class JuegoProyecto {
             return;
         }
 
-        System.out.println("\n===== PREMIOS EN LA PILA =====");
+        System.out.println("\n***** PREMIOS EN LA PILA *****");
         System.out.println("Operacion\t Numero\t Descripcion");
         System.out.println("-----------------------------------------");
 
@@ -513,7 +509,7 @@ public class JuegoProyecto {
             return;
         }
 
-        System.out.println("\n ===== CASTIGOS EN LA PILA =====");
+        System.out.println("\n ***** CASTIGOS EN LA PILA *****");
         System.out.println("Operacion \t Numero\t Descripcion");
         System.out.println("-----------------------------------------");
 
@@ -563,7 +559,7 @@ public class JuegoProyecto {
             actual.imprimirHistorial();
 
             // Opciones de navegacion
-            System.out.println("\nOpciones:");
+            System.out.println("\n Opciones:");
             System.out.println("1. Siguiente jugador");
             System.out.println("2. Jugador anterior");
             System.out.println("3. Volver al menu principal");
@@ -596,7 +592,7 @@ public class JuegoProyecto {
 
     // Metodo para mostrar la ayuda
     private static void mostrarAyuda() {
-        System.out.println("\n===== AYUDA DEL JUEGO =====");
+        System.out.println("\n ***** AYUDA DEL JUEGO *****");
         System.out.println("Version:1.3 "); // Actualizado a versión 1.3
         System.out.println("Desarrollado por: Esteban, Diana y Andres\n");
         System.out.println("\nINSTRUCCIONES:");
@@ -615,7 +611,7 @@ public class JuegoProyecto {
         System.out.println("- Control de jugadores que se pasan de la meta");
         System.out.println("- Visualizacion del estado del tablero");
         System.out.println("- Bitacora completa del recorrido de cada jugador");
-        System.out.println("- Chatbot de preguntas frecuentes con estructura de arbol binario");
+        System.out.println("- Chatbot de preguntas frecuentes");
 
     }
 }

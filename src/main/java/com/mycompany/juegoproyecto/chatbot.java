@@ -26,6 +26,203 @@ public class chatbot {
         // Precargar el arbol con los datos iniciales
         arbolPreguntas.precargarArbol();
     }
+    
+    /**
+     * Iniciar el chatbot con el menu principal
+     */
+    public void iniciar() {
+        boolean salir = false;
+        
+        while (!salir) {
+            System.out.println("\n****CHATBOT DE PREGUNTAS FRECUENTES ****");
+            System.out.println("1. Ver chatbot (Usuarios)");
+            System.out.println("2. Mantenimiento del chatbot (Administradores)");
+            System.out.println("3. Volver al menu principal");
+            System.out.print("Seleccione una opcion: ");
+            
+            int opcion;
+            try {
+                opcion = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Ingrese un numero valido.");
+                continue;
+            }
+            
+            switch (opcion) {
+                case 1:
+                    verChatbot();
+                    break;
+                case 2:
+                    mantenimientoChatbot();
+                    break;
+                case 3:
+                    System.out.println("Volviendo al menu principal...");
+                    salir = true;
+                    break;
+                default:
+                    System.out.println("Opcion invalida, intente de nuevo.");
+                    break;
+            }
+        }
+    }
+    
+    /**
+     * Interfaz para usuarios del chatbot
+     */
+    private void verChatbot() {
+        // Mensaje de bienvenida
+        System.out.println("\n¡Bienvenido al Chatbot de Preguntas Frecuentes! ¿En que puedo ayudarte hoy?");
+        
+        // Comenzar en el nodo raiz
+        NodoPreguntas nodoActual = arbolPreguntas.getRaiz();
+        boolean salir = false;
+        
+        while (!salir) {
+            // Mostrar opciones disponibles
+            System.out.println("\n=== " + nodoActual.getNombre() + " ===");
+            
+            // Si es un nodo hoja, mostrar las preguntas
+            if (nodoActual.esHoja()) {
+                listaPreguntas listaPreguntas = nodoActual.getListaPreguntas();
+                
+                if (listaPreguntas.estaVacia()) {
+                    System.out.println("No hay preguntas disponibles en esta categoria.");
+                    // Siempre mostrar la opción de regresar para evitar el bucle infinito
+                    System.out.println("0. Regresar");
+                    System.out.print("Seleccione una opcion: ");
+                    
+                    int seleccion;
+                    try {
+                        seleccion = Integer.parseInt(scanner.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error: Ingrese un numero valido.");
+                        continue;
+                    }
+                    
+                    if (seleccion == 0) {
+                        // Regresar al nodo padre
+                        NodoPreguntas nodoPadre = buscarNodoPadre(nodoActual.getCodigo());
+                        if (nodoPadre != null) {
+                            nodoActual = nodoPadre;
+                        } else {
+                            // Si no hay nodo padre, regresar a la raiz
+                            nodoActual = arbolPreguntas.getRaiz();
+                        }
+                    } else {
+                        System.out.println("Opcion invalida. Por favor seleccione 0 para regresar.");
+                    }
+                } else {
+                    // Mostrar las preguntas
+                    listaPreguntas.mostrarPreguntas();
+                    
+                    // Pedir al usuario que seleccione una pregunta
+                    System.out.println("0. Regresar");
+                    System.out.print("Seleccione una pregunta: ");
+                    
+                    int seleccion;
+                    try {
+                        seleccion = Integer.parseInt(scanner.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error: Ingrese un numero valido.");
+                        continue;
+                    }
+                    
+                    if (seleccion == 0) {
+                        // Regresar al nodo padre
+                        NodoPreguntas nodoPadre = buscarNodoPadre(nodoActual.getCodigo());
+                        if (nodoPadre != null) {
+                            nodoActual = nodoPadre;
+                        } else {
+                            // Si no hay nodo padre, volver a la raiz
+                            nodoActual = arbolPreguntas.getRaiz();
+                        }
+                    } else if (seleccion >= 1 && seleccion <= listaPreguntas.getCantidad()) {
+                        // Mostrar la respuesta a la pregunta seleccionada
+                        preguntas pregunta = listaPreguntas.obtenerPreguntaPorPosicion(seleccion);
+                        if (pregunta != null) {
+                            System.out.println("\nPregunta: " + pregunta.getNombre());
+                            System.out.println("Respuesta: " + pregunta.getRespuesta());
+                            
+                            // Esperar a que el usuario presione Enter para continuar
+                            System.out.println("\nPresione Enter para continuar...");
+                            scanner.nextLine();
+                        } else {
+                            System.out.println("Pregunta no encontrada.");
+                        }
+                    } else {
+                        System.out.println("Seleccion invalida.");
+                    }
+                }
+            } else {
+                // Mostrar opciones de navegacion
+                System.out.println("Opciones disponibles:");
+                int opcion = 1;
+                boolean tieneOpciones = false;
+                
+                // Opcion para el hijo izquierdo si existe
+                if (nodoActual.getIzquierda() != null) {
+                    System.out.println(opcion + ". " + nodoActual.getIzquierda().getNombre());
+                    opcion++;
+                    tieneOpciones = true;
+                }
+                
+                // Opcion para el hijo derecho si existe
+                if (nodoActual.getDerecha() != null) {
+                    System.out.println(opcion + ". " + nodoActual.getDerecha().getNombre());
+                    opcion++;
+                    tieneOpciones = true;
+                }
+                
+                // Si no hay opciones disponibles (raro pero posible)
+                if (!tieneOpciones) {
+                    System.out.println("No hay opciones disponibles en esta categoria.");
+                }
+                
+                // Opcion para regresar (excepto en la raiz)
+                if (!nodoActual.getCodigo().equals("1")) {
+                    System.out.println("0. Regresar");
+                } else {
+                    System.out.println("0. Salir del chatbot");
+                }
+                
+                // Pedir al usuario que seleccione una opcion
+                System.out.print("Seleccione una opcion: ");
+                
+                int seleccion;
+                try {
+                    seleccion = Integer.parseInt(scanner.nextLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Error: Ingrese un numero valido.");
+                    continue;
+                }
+                
+                if (seleccion == 0) {
+                    if (nodoActual.getCodigo().equals("1")) {
+                        // Si estamos en la raiz, salir del chatbot
+                        System.out.println("¡Gracias por usar nuestro chatbot! ¡Hasta pronto!");
+                        salir = true;
+                    } else {
+                        // Regresar al nodo padre
+                        NodoPreguntas nodoPadre = buscarNodoPadre(nodoActual.getCodigo());
+                        if (nodoPadre != null) {
+                            nodoActual = nodoPadre;
+                        } else {
+                            // Si no se puede encontrar el padre, volver a la raiz
+                            System.out.println("No se puede encontrar el nodo padre. Volviendo al menu principal.");
+                            nodoActual = arbolPreguntas.getRaiz();
+                        }
+                    }
+                } else if (seleccion == 1 && nodoActual.getIzquierda() != null) {
+                    nodoActual = nodoActual.getIzquierda();
+                } else if ((seleccion == 2 || (seleccion == 1 && nodoActual.getIzquierda() == null)) 
+                          && nodoActual.getDerecha() != null) {
+                    nodoActual = nodoActual.getDerecha();
+                } else {
+                    System.out.println("Seleccion invalida.");
+                }
+            }
+        }
+    }
 
     /**
      * Buscar el nodo padre de un nodo dado su codigo
@@ -51,13 +248,13 @@ public class chatbot {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println("\n===== MANTENIMIENTO DEL CHATBOT =====");
-            System.out.println("1. Insertar/Modificar preguntas padres (Nodos del arbol)");
-            System.out.println("2. Insertar/Modificar preguntas hijas (Lista de preguntas)");
+            System.out.println("\n**** MANTENIMIENTO DEL CHATBOT ****");
+            System.out.println("1. Insertar/Modificar preguntas padres (Nodos arbol)");
+            System.out.println("2. Insertar/Modificar preguntas hijas (preguntas)");
             System.out.println("3. Imprimir preguntas de un nodo");
             System.out.println("4. Imprimir estructura del arbol");
-            System.out.println("5. Volver al menu de chatbot");
-            System.out.print("Seleccione una opcion: ");
+            System.out.println("5. Volver al menu anterior");
+            System.out.print("Seleccione una opcion:");
 
             int opcion;
             try {
@@ -78,14 +275,14 @@ public class chatbot {
                     imprimirPreguntas();
                     break;
                 case 4:
-                    System.out.println("\n=== ESTRUCTURA DEL ARBOL DE PREGUNTAS ===");
+                    System.out.println("\n*** ESTRUCTURA DEL ARBOL DE PREGUNTAS *** ");
                     arbolPreguntas.recorrerPreorden();
                     break;
                 case 5:
                     salir = true;
                     break;
                 default:
-                    System.out.println("Opcion invalida, intente de nuevo.");
+                    System.out.println("Opcion invalida, intente nuvamente!");
                     break;
             }
         }
@@ -95,10 +292,10 @@ public class chatbot {
      * Insertar o modificar un nodo en el arbol
      */
     private void insertarModificarNodo() {
-        System.out.println("\n=== INSERTAR/MODIFICAR NODO ===");
+        System.out.println("\n***  INSERTAR/MODIFICAR NODO *** ");
 
         // Mostrar la estructura actual del arbol
-        System.out.println("Estructura actual del arbol:");
+        System.out.println("Estructura del arbol actual:");
         arbolPreguntas.recorrerPreorden();
 
         // Solicitar codigo del nodo padre
@@ -144,14 +341,14 @@ public class chatbot {
      * Insertar o modificar una pregunta en un nodo hoja
      */
     private void insertarModificarPregunta() {
-        System.out.println("\n=== INSERTAR/MODIFICAR PREGUNTA ===");
+        System.out.println("\n***  INSERTAR/MODIFICAR PREGUNTA ***");
 
         // Mostrar la estructura actual del arbol
-        System.out.println("Estructura actual del arbol:");
+        System.out.println("Estructura del arbol actual:");
         arbolPreguntas.recorrerPreorden();
 
         // Solicitar codigo del nodo
-        System.out.print("\nIngrese el codigo del nodo donde insertar la pregunta: ");
+        System.out.print("\n Ingrese el codigo del nodo donde insertar la pregunta: ");
         String codigoNodo = scanner.nextLine();
 
         // Verificar que el nodo existe y es una hoja
@@ -171,7 +368,7 @@ public class chatbot {
         String codigoPregunta = scanner.nextLine();
 
         if (codigoPregunta.trim().isEmpty()) {
-            System.out.println("Error: El codigo de la pregunta no puede estar vacio.");
+            System.out.println("Error: El codigo de la pregunta no debe estar vacio.");
             return;
         }
 
@@ -184,7 +381,7 @@ public class chatbot {
         String nombrePregunta = scanner.nextLine();
 
         if (nombrePregunta.trim().isEmpty()) {
-            System.out.println("Error: El texto de la pregunta no puede estar vacio.");
+            System.out.println("Error: El texto de la pregunta no debw estar vacio.");
             return;
         }
 
@@ -204,14 +401,14 @@ public class chatbot {
             if (exito) {
                 System.out.println("Pregunta modificada correctamente.");
             } else {
-                System.out.println("Error al modificar la pregunta.");
+                System.out.println("Error");
             }
         } else {
             exito = arbolPreguntas.insertarPregunta(codigoNodo, codigoPregunta, nombrePregunta, respuesta);
             if (exito) {
                 System.out.println("Pregunta insertada correctamente.");
             } else {
-                System.out.println("Error al insertar la pregunta.");
+                System.out.println("Error");
             }
         }
     }
@@ -220,7 +417,7 @@ public class chatbot {
      * Imprimir las preguntas de un nodo especifico
      */
     private void imprimirPreguntas() {
-        System.out.println("\n=== IMPRIMIR PREGUNTAS DE UN NODO ===");
+        System.out.println("\n*** IMPRIMIR PREGUNTAS DE UN NODO ***");
 
         // Mostrar la estructura actual del arbol
         System.out.println("Estructura actual del arbol:");
@@ -238,7 +435,7 @@ public class chatbot {
         }
 
         // Mostrar las preguntas
-        System.out.println("\n=== Preguntas del nodo [" + nodo.getCodigo() + "] " + nodo.getNombre() + " ===");
+        System.out.println("\n *** Preguntas del nodo [" + nodo.getCodigo() + "] " + nodo.getNombre() + " ***");
 
         if (!nodo.esHoja()) {
             System.out.println("Este nodo no es una hoja, por lo tanto no tiene preguntas.");
@@ -256,173 +453,10 @@ public class chatbot {
         for (int i = 1; i <= listaPreguntas.getCantidad(); i++) {
             preguntas pregunta = listaPreguntas.obtenerPreguntaPorPosicion(i);
             if (pregunta != null) {
-                System.out.println("\nCodigo: " + pregunta.getCodigo());
+                System.out.println("\n Codigo: " + pregunta.getCodigo());
                 System.out.println("Pregunta: " + pregunta.getNombre());
                 System.out.println("Respuesta: " + pregunta.getRespuesta());
                 System.out.println("---------------------------");
-            }
-        }
-    }
-
-    /**
-     * Iniciar el chatbot con el menu principal
-     */
-    public void iniciar() {
-        boolean salir = false;
-
-        while (!salir) {
-            System.out.println("\n===== CHATBOT DE PREGUNTAS FRECUENTES =====");
-            System.out.println("1. Ver chatbot (Usuarios)");
-            System.out.println("2. Mantenimiento del chatbot (Administradores)");
-            System.out.println("3. Volver al menu principal");
-            System.out.print("Seleccione una opcion: ");
-
-            int opcion;
-            try {
-                opcion = Integer.parseInt(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Error: Ingrese un numero valido.");
-                continue;
-            }
-
-            switch (opcion) {
-                case 1:
-                    verChatbot();
-                    break;
-                case 2:
-                    mantenimientoChatbot();
-                    break;
-                case 3:
-                    System.out.println("Volviendo al menu principal...");
-                    salir = true;
-                    break;
-                default:
-                    System.out.println("Opcion invalida, intente de nuevo.");
-                    break;
-            }
-        }
-    }
-
-    /**
-     * Interfaz para usuarios del chatbot
-     */
-    private void verChatbot() {
-        // Mensaje de bienvenida
-        System.out.println("\n¡Bienvenido al Chatbot de Preguntas Frecuentes! ¿En que puedo ayudarte hoy?");
-
-        // Comenzar en el nodo raiz
-        NodoPreguntas nodoActual = arbolPreguntas.getRaiz();
-        boolean salir = false;
-
-        while (!salir) {
-            // Mostrar opciones disponibles
-            System.out.println("\n=== " + nodoActual.getNombre() + " ===");
-
-            // Si es un nodo hoja, mostrar las preguntas
-            if (nodoActual.esHoja()) {
-                listaPreguntas listaPreguntas = nodoActual.getListaPreguntas();
-
-                if (listaPreguntas.estaVacia()) {
-                    System.out.println("No hay preguntas disponibles en esta categoria.");
-                } else {
-                    // Mostrar las preguntas
-                    listaPreguntas.mostrarPreguntas();
-
-                    // Pedir al usuario que seleccione una pregunta
-                    System.out.println("0. Regresar");
-                    System.out.print("Seleccione una pregunta: ");
-
-                    int seleccion;
-                    try {
-                        seleccion = Integer.parseInt(scanner.nextLine());
-                    } catch (NumberFormatException e) {
-                        System.out.println("Error: Ingrese un numero valido.");
-                        continue;
-                    }
-
-                    if (seleccion == 0) {
-                        // Regresar al nodo padre
-                        NodoPreguntas nodoPadre = buscarNodoPadre(nodoActual.getCodigo());
-                        if (nodoPadre != null) {
-                            nodoActual = nodoPadre;
-                        } else {
-                            // Si no hay nodo padre, mostrar mensaje de error
-                            System.out.println("No se puede regresar mas atras.");
-                        }
-                    } else if (seleccion >= 1 && seleccion <= listaPreguntas.getCantidad()) {
-                        // Mostrar la respuesta a la pregunta seleccionada
-                        preguntas pregunta = listaPreguntas.obtenerPreguntaPorPosicion(seleccion);
-                        if (pregunta != null) {
-                            System.out.println("\nPregunta: " + pregunta.getNombre());
-                            System.out.println("Respuesta: " + pregunta.getRespuesta());
-
-                            // Esperar a que el usuario presione Enter para continuar
-                            System.out.println("\nPresione Enter para continuar...");
-                            scanner.nextLine();
-                        } else {
-                            System.out.println("Pregunta no encontrada.");
-                        }
-                    } else {
-                        System.out.println("Seleccion invalida.");
-                    }
-                }
-            } else {
-                // Mostrar opciones de navegacion
-                System.out.println("Opciones disponibles:");
-                int opcion = 1;
-
-                // Opcion para el hijo izquierdo si existe
-                if (nodoActual.getIzquierda() != null) {
-                    System.out.println(opcion + ". " + nodoActual.getIzquierda().getNombre());
-                    opcion++;
-                }
-
-                // Opcion para el hijo derecho si existe
-                if (nodoActual.getDerecha() != null) {
-                    System.out.println(opcion + ". " + nodoActual.getDerecha().getNombre());
-                    opcion++;
-                }
-
-                // Opcion para regresar (excepto en la raiz)
-                if (!nodoActual.getCodigo().equals("1")) {
-                    System.out.println("0. Regresar");
-                } else {
-                    System.out.println("0. Salir del chatbot");
-                }
-
-                // Pedir al usuario que seleccione una opcion
-                System.out.print("Seleccione una opcion: ");
-
-                int seleccion;
-                try {
-                    seleccion = Integer.parseInt(scanner.nextLine());
-                } catch (NumberFormatException e) {
-                    System.out.println("Error: Ingrese un numero valido.");
-                    continue;
-                }
-
-                if (seleccion == 0) {
-                    if (nodoActual.getCodigo().equals("1")) {
-                        // Si estamos en la raiz, salir del chatbot
-                        System.out.println("¡Gracias por usar nuestro chatbot! ¡Hasta pronto!");
-                        salir = true;
-                    } else {
-                        // Regresar al nodo padre
-                        NodoPreguntas nodoPadre = buscarNodoPadre(nodoActual.getCodigo());
-                        if (nodoPadre != null) {
-                            nodoActual = nodoPadre;
-                        } else {
-                            System.out.println("No se puede regresar mas atras.");
-                        }
-                    }
-                } else if (seleccion == 1 && nodoActual.getIzquierda() != null) {
-                    nodoActual = nodoActual.getIzquierda();
-                } else if ((seleccion == 2 || (seleccion == 1 && nodoActual.getIzquierda() == null))
-                        && nodoActual.getDerecha() != null) {
-                    nodoActual = nodoActual.getDerecha();
-                } else {
-                    System.out.println("Seleccion invalida.");
-                }
             }
         }
     }

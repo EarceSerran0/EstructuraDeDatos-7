@@ -247,7 +247,7 @@ public class chatbot {
         boolean salir = false;
 
         while (!salir) {
-            System.out.println("\n===== MANTENIMIENTO DEL CHATBOT =====");
+            System.out.println("\n*** MANTENIMIENTO DEL CHATBOT ***");
             System.out.println("1. Insertar/Modificar preguntas padres (Nodos del arbol)");
             System.out.println("2. Insertar/Modificar preguntas hijas (Lista de preguntas)");
             System.out.println("3. Imprimir preguntas de un nodo");
@@ -416,14 +416,14 @@ public class chatbot {
      * Imprimir las preguntas de un nodo especifico
      */
     private void imprimirPreguntas() {
-        System.out.println("\n=== IMPRIMIR PREGUNTAS DE UN NODO ===");
+        System.out.println("\n ***IMPRIMIR PREGUNTAS DE UN NODO ***");
 
         // Mostrar la estructura actual del arbol
         System.out.println("Estructura actual del arbol:");
         arbolPreguntas.recorrerPreorden();
 
         // Solicitar codigo del nodo
-        System.out.print("\nIngrese el codigo del nodo para ver sus preguntas: ");
+        System.out.print("\n Ingrese el codigo del nodo para ver sus preguntas: ");
         String codigoNodo = scanner.nextLine();
 
         // Verificar que el nodo existe
@@ -455,7 +455,7 @@ public class chatbot {
                 System.out.println("\n Codigo: " + pregunta.getCodigo());
                 System.out.println("Pregunta: " + pregunta.getNombre());
                 System.out.println("Respuesta: " + pregunta.getRespuesta());
-                System.out.println("---------------------------");
+                System.out.println("*********************");
             }
         }
     }
